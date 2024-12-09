@@ -15,62 +15,96 @@
         <h2><a href="https://www.coupang.com/">쿠팡 메인</a></h2>
     </header>
     <main>
-        <div>
-            <a href="#">돌아가기</a>
-            <p>장바구니</p>
-            <div></div>
-        </div>
-        <div>
-            <span>일반구매</span>
-            <a href="#">정기배송</a>
-        </div>
-        <div>
-            <span>
+        <div id="basketMain">
+            <div id="basketTitle">
+                <a href="#">돌아가기</a>
+                <p>장바구니</p>
+                <div></div>
+            </div>
+            <div id="basketTab">
+                <span>일반구매(<span>0</span>)</span>
+                <a href="#">정기배송(<span>0</span>)</a>
+            </div>
+            <div id="contentsCont">
+                <div id="basketContDiv">
+                    <p>로켓배송 상품 <span>무료배송</span></p>
+                    <table>
+                        <tbody id="basketCont">
+                            <tr id="basketTrEx">
+                                <td>
+                                    <div>
+                                        <input type="checkbox">
+                                    </div>
+                                    <img src="img/서울우유 1급A우유,2.3L.jpg" alt="" id="productImg">
+                                </td>
+                                <td id="productInfo" class="prodcutInfo">
+                                    <span class="title">서울우유 1급A우유, 2.3L, 1개</span>
+                                    <div class="deliveryDateCont">
+                                        <span class="arriveDate">
+                                            <span class="arriveDateTxt">내일</span>
+                                            <span class="arriveDateDay">(화) </span>
+                                            <span class="arriveDateDate">12/10</span>
+                                            <span class="arriveDateTime"></span>
+                                            <span class="promiseTxt"> 도착 보장
+                                            </span>
+                                        </span>
+                                        <span class="deliveryCondition">(밤 12시 전 주문 시)</span>
+                                    </div>
+                                    <span class="price">7580</span><span>원</span>
+                                    <img src="img/logo_rocket_large.png" alt="로켓배송 이미지">
+                                    <div id="cntCont">
+                                        <div>-</div>
+                                        <input type="text" name="cnt" class="cnt" value="1">
+                                        <div>+</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <a href="#">로켓배송 상품 추가하기</a>
+                    </div>
+                </div>
+                <div id="orderCont">
+                    <div>주문 예상 금액</div>
+                    <div>
+                        <div class="priceTitle">총 상품가격</div>
+                        <div class="priceSum">0<span>원</span></div>
+                    </div>
+                    <div>
+                        <div class="priceTitle">총 할인</div>
+                        <div>- 0<span>원</span></div>
+                    </div>
+                    <div>
+                        <div class="priceTitle">총 배송비</div>
+                        <div>+ 0<span>원</span></div>
+                    </div>
+                    <div class="priceTotal">0<span>원</span></div>
+                    <button>구매하기 (0)</button>
+                </div>
+            </div>
+            <div id="basketFoot">
                 <label>
                     <input title="모든 상품을 결제상품으로 설정" type="checkbox">
                     <span>전체 선택</span>
-                    <span class="cart-count-bottom">(<em>0</em>/3)</span>
+                    <span class="cart-count-bottom">( 0 / 3 )</span>
                 </label>
                 <div>
-                    <a href="#">선택 삭제</a>
+                    <button>선택 삭제</button>
                     <div></div>
-                    <a href="#">품절상품 삭제</a>
+                    <button>품절/판매종료상품 전체삭제</button>
                 </div>
-            </span>
-            <table>
-                <tbody id="basketCont">
-                    <tr id="basketTrEx">
-                        <td>
-                            <input type="checkbox">
-                            <img src="img/서울우유 1급A우유,2.3L.jpg" alt="" id="productImg">
-                        </td>
-                        <td id="productInfo" class="prodcutInfo">
-                            <span class="title">서울우유 1급A우유, 2.3L, 1개</span>
-                            <span class="price">7580</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            </div>
         </div>
-        <div>
-            <div>주문 예상 금액</div>
+        <div id="recommendProductHead">
+            <h2>같이 보면 좋은 상품</h2>
             <div>
-                <div>총 상품가격</div>
-                <div>0원</div>
+                <span>1<span>/5</span></span>
+                <button>이전페이지</button>
+                <button>다음페이지</button>
             </div>
-            <div>
-                <div>총 할인</div>
-                <div>0원</div>
-            </div>
-            <div>
-                <div>총 배송비</div>
-                <div>0원</div>
-            </div>
-            <div>0원</div>
-            <button>구매하기 (0)</button>
         </div>
-        <h2>같이 보면 좋은 상품</h2>
-        <div>
+        <div id="recommendProduct">
             <table>
                 <tbody id="productCont">
                     <tr id="productTrEx">
@@ -79,15 +113,20 @@
                         </td>
                         <td id="itemInfo" class="prodcutInfo">
                             <span class="title">서울우유 1급A우유, 2.3L, 1개</span>
-                            <span class="price">7580</span>
+                            <div>
+                                <span>쿠팡가</span>
+                                <span class="price">7580</span>
+                                <span>원</span>
+                                <img src="img/logo_rocket_large.png" alt="로켓배송로고이미지">
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </main>
-    <footer>
-        <h2>기타이용서비스</h2>
+    <footer class="screen_out">
+        <h2 class="screen_out">기타이용서비스</h2>
         <ul>
             <li>회사소개</li>
             <li>Investor Relations</li>
