@@ -1,6 +1,15 @@
-body {
-    background-color: burlywood;
-    margin: 0;
-    padding: 0;
-}
+* {margin: 0; padding: 0; list-style: none;}
+a {text-decoration: none; color: #000; font-family: "Rubik", sans-serif;}
+.screen_out {display: none;}
+summary, button, label, a {cursor: pointer;}
+
 img {width: 140px; height: 140px;}
+body {background-color: #f0f0f0;}
+
+header h2 {width: 980px; margin: 20px auto 13px;}
+header h2 a {display: block; text-indent: -999px; overflow: hidden; width: 140px; height: 37px; background: url(./img/coupang_sprite_1.png) no-repeat -988px -108px;}
+
+main {width: 980px; border: 1px solid #e0e0e0; background-color: #fff; margin: 0 auto 70px; padding: 40px; box-sizing: border-box; border-top: 1px solid #111;}
+main div:nth-of-type(1) {display: flex;}
+main div:nth-of-type(1) p {font-weight: 500; font-size: 36px; color:#212b36}
+main>div:nth-of-type(2) {border: 1px solid red;}
