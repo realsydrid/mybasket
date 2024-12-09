@@ -22,7 +22,7 @@ const setEventListeners = () => {
     const basketCont = document.getElementById('basketCont');
     
     basketCont.addEventListener('click', (e) => {
-        if (!e.target.className.includes('cnt')) return;        
+        if (!e.target.className.includes('cnt')) {return;}                
         const tr = e.target.closest('tr');
         const priceSpan = tr.querySelector('.price');
         const titleSpan = tr.querySelector('.title');
@@ -38,7 +38,7 @@ const setEventListeners = () => {
     });
 
     basketCont.addEventListener('change', (e) => {
-        if (e.target.className !== 'cnt') return;        
+        if (e.target.className !== 'cnt') {return;}        
         const tr = e.target.closest('tr');
         const priceSpan = tr.querySelector('.price');
         const titleSpan = tr.querySelector('.title');
@@ -54,7 +54,7 @@ const setEventListeners = () => {
     });
 
     basketCont.addEventListener('input', (e) => {
-        if (e.target.className !== 'cnt') return;        
+        if (e.target.className !== 'cnt') {return;}        
         e.target.value = e.target.value.replace(/[^0-9]/g, '');        
         if (e.target.value.startsWith('0')) {
             e.target.value = e.target.value.replace(/^0+/, '');
