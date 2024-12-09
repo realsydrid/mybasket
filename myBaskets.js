@@ -22,6 +22,7 @@ const loadData = async function () {
     printProducts(products);
 }
 loadData();
+
 const printBaskets = (userBaskets) => {
     const basketTrEx = document.getElementById('basketTrEx');
     const basketCont = document.getElementById('basketCont');
@@ -35,15 +36,12 @@ const printBaskets = (userBaskets) => {
             let td = tr.querySelector('#productInfo');
             let span = td.querySelector(`.${key}`)
             let input = td.querySelector('.cnt')
+            let priceSpan = tr.querySelector('.price');
+            priceSpan.innerText = (basket.price * input.value).toLocaleString()
             if (key == 'cnt'){
                 input.value = basket[key]
-            }
-            if (key == "price"){
-                if (span) {
-                    span.innerText = (basket[key] * input.value).toLocaleString()
-                }
-            }else{                
-                if (span) {
+            }else if (key != 'price') {
+                if(span) {
                     span.innerText = basket[key]
                 }
             }
@@ -52,7 +50,28 @@ const printBaskets = (userBaskets) => {
         img.src = basket['img[src]']
     });
 }
-
+document.addEventListener('DOMContentLoaded', () => {
+    const basketCont = document.getElementById('basketCont');
+    
+    basketCont.addEventListener('click', (e) => {
+        if (!e.target.className.includes('cnt')) return;
+        
+        const tr = e.target.closest('tr');
+        const cntInput = tr.querySelector('.cnt');
+        const priceSpan = tr.querySelector('.price');
+        let currentValue = parseInt(cntInput.value);
+        const originalPrice = parseInt(priceSpan.innerText.replace(/,/g, '')) / currentValue;
+        
+        if (e.target.className === 'cntPlusBtn') {
+            currentValue++;
+        } else if (e.target.className === 'cntMinusBtn' && currentValue > 1) {
+            currentValue--;
+        }
+        
+        cntInput.value = currentValue;
+        priceSpan.innerText = (originalPrice * currentValue).toLocaleString();
+    });
+});
 const printProducts = (products) => {
     console.log(products);
     const productTrEx = document.getElementById('productTrEx');
