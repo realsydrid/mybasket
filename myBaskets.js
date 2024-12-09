@@ -1,8 +1,4 @@
-
-
-//project
-//1.로그인 유저 ajax로 불러오기(동시에 상품 리스트)
-//2.그 유저의 장바구니목록 불러오기
+let userBaskets;
 
 const loadData = async function () {
     let resArr = await Promise.all([
@@ -15,13 +11,59 @@ const loadData = async function () {
     ])
     const loginUser = objArr[0];
     const products = objArr[1];
-    //baskets?user_id=isy; =>isyBaskets.json
     let res3 = await fetch(`./${loginUser['user_id']}Baskets.json`);
-    let userBaskets = await res3.json()
+    userBaskets = await res3.json()
     printBaskets(userBaskets);
     printProducts(products);
+    setEventListeners();
 }
-loadData();
+
+const setEventListeners = () => {
+    const basketCont = document.getElementById('basketCont');
+    
+    basketCont.addEventListener('click', (e) => {
+        if (!e.target.className.includes('cnt')) return;        
+        const tr = e.target.closest('tr');
+        const priceSpan = tr.querySelector('.price');
+        const titleSpan = tr.querySelector('.title');
+        const basket = userBaskets.baskets.find(item => item.title === titleSpan.innerText);
+        let currentValue = Number(tr.querySelector('.cnt').value);        
+        if (e.target.className === 'cntPlusBtn') {
+            currentValue++;
+        } else if (e.target.className === 'cntMinusBtn' && currentValue > 1) {
+            currentValue--;
+        }        
+        tr.querySelector('.cnt').value = currentValue;
+        priceSpan.innerText = (basket.price * currentValue).toLocaleString();
+    });
+
+    basketCont.addEventListener('change', (e) => {
+        if (e.target.className !== 'cnt') return;        
+        const tr = e.target.closest('tr');
+        const priceSpan = tr.querySelector('.price');
+        const titleSpan = tr.querySelector('.title');
+        const basket = userBaskets.baskets.find(item => item.title === titleSpan.innerText);        
+        let currentValue = e.target.value.replace(/[^0-9]/g, '');        
+        if (!currentValue || currentValue === '0') {
+            currentValue = 1;
+        } else {
+            currentValue = Math.min(Number(currentValue), 999);
+        }        
+        e.target.value = currentValue;
+        priceSpan.innerText = (basket.price * currentValue).toLocaleString();
+    });
+
+    basketCont.addEventListener('input', (e) => {
+        if (e.target.className !== 'cnt') return;        
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');        
+        if (e.target.value.startsWith('0')) {
+            e.target.value = e.target.value.replace(/^0+/, '');
+        }
+    });
+}
+
+
+
 
 const printBaskets = (userBaskets) => {
     const basketTrEx = document.getElementById('basketTrEx');
@@ -38,10 +80,10 @@ const printBaskets = (userBaskets) => {
             let input = td.querySelector('.cnt')
             let priceSpan = tr.querySelector('.price');
             priceSpan.innerText = (basket.price * input.value).toLocaleString()
-            if (key == 'cnt'){
+            if (key == 'cnt') {
                 input.value = basket[key]
-            }else if (key != 'price') {
-                if(span) {
+            } else if (key != 'price') {
+                if (span) {
                     span.innerText = basket[key]
                 }
             }
@@ -50,28 +92,8 @@ const printBaskets = (userBaskets) => {
         img.src = basket['img[src]']
     });
 }
-document.addEventListener('DOMContentLoaded', () => {
-    const basketCont = document.getElementById('basketCont');
-    
-    basketCont.addEventListener('click', (e) => {
-        if (!e.target.className.includes('cnt')) return;
-        
-        const tr = e.target.closest('tr');
-        const cntInput = tr.querySelector('.cnt');
-        const priceSpan = tr.querySelector('.price');
-        let currentValue = parseInt(cntInput.value);
-        const originalPrice = parseInt(priceSpan.innerText.replace(/,/g, '')) / currentValue;
-        
-        if (e.target.className === 'cntPlusBtn') {
-            currentValue++;
-        } else if (e.target.className === 'cntMinusBtn' && currentValue > 1) {
-            currentValue--;
-        }
-        
-        cntInput.value = currentValue;
-        priceSpan.innerText = (originalPrice * currentValue).toLocaleString();
-    });
-});
+
+
 const printProducts = (products) => {
     console.log(products);
     const productTrEx = document.getElementById('productTrEx');
@@ -84,11 +106,11 @@ const printProducts = (products) => {
         for (let key in product) {
             let td = tr.querySelector('#itemInfo')
             let span = td.querySelector(`.${key}`);
-            if (key == 'price'){
+            if (key == 'price') {
                 if (span) {
                     span.innerText = product[key].toLocaleString()
                 }
-            }else {
+            } else {
                 if (span) {
                     span.innerText = product[key]
                 }
@@ -100,5 +122,5 @@ const printProducts = (products) => {
 
 }
 
-
+loadData();
 
