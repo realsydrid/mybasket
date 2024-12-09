@@ -34,8 +34,18 @@ const printBaskets = (userBaskets) => {
         for (let key in basket) {
             let td = tr.querySelector('#productInfo');
             let span = td.querySelector(`.${key}`)
-            if (span) {
-                span.innerText = basket[key]
+            let input = td.querySelector('.cnt')
+            if (key == 'cnt'){
+                input.value = basket[key]
+            }
+            if (key == "price"){
+                if (span) {
+                    span.innerText = (basket[key] * input.value).toLocaleString()
+                }
+            }else{                
+                if (span) {
+                    span.innerText = basket[key]
+                }
             }
         }
         let img = tr.querySelector('#productImg')
@@ -55,8 +65,14 @@ const printProducts = (products) => {
         for (let key in product) {
             let td = tr.querySelector('#itemInfo')
             let span = td.querySelector(`.${key}`);
-            if (span) {
-                span.innerText = product[key]
+            if (key == 'price'){
+                if (span) {
+                    span.innerText = product[key].toLocaleString()
+                }
+            }else {
+                if (span) {
+                    span.innerText = product[key]
+                }
             }
         }
         let img = tr.querySelector('#itemImg')
