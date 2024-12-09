@@ -1,15 +1,32 @@
-* {margin: 0; padding: 0; list-style: none;}
-a {text-decoration: none; color: #000; font-family: "Rubik", sans-serif;}
+@font-face {
+    font-family: 'Arita-dotum-Medium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+* {margin: 0; padding: 0; list-style: none; font-family: "Arita-dotum-Medium", sans-serif;}
+a {text-decoration: none; color: #000;}
 .screen_out {display: none;}
 summary, button, label, a {cursor: pointer;}
 
-img {width: 140px; height: 140px;}
+table img {width: 140px; height: 140px;}
 body {background-color: #f0f0f0;}
 
 header h2 {width: 980px; margin: 20px auto 13px;}
 header h2 a {display: block; text-indent: -999px; overflow: hidden; width: 140px; height: 37px; background: url(./img/coupang_sprite_1.png) no-repeat -988px -108px;}
 
 main {width: 980px; border: 1px solid #e0e0e0; background-color: #fff; margin: 0 auto 70px; padding: 40px; box-sizing: border-box; border-top: 1px solid #111;}
-main div:nth-of-type(1) {display: flex;}
-main div:nth-of-type(1) p {font-weight: 500; font-size: 36px; color:#212b36}
-main>div:nth-of-type(2) {border: 1px solid red;}
+main>div:nth-of-type(1) {display: flex; justify-content: flex-start; align-items: flex-end; padding: 0 0 30px;}
+main>div:nth-of-type(1) a {width: 36px; height: 36px; background: url(img/previous_btn.svg) no-repeat; text-indent: -999px; overflow: hidden; padding-bottom: 5px;}
+main>div:nth-of-type(1) p {font-weight: 500; font-size: 36px; color:#212b36; flex: 1;}
+main>div:nth-of-type(1)>div {width: 370px; height: 20px; background: url(img/orderstep4.gif) no-repeat -533px -216px ;}
+main>div:nth-of-type(2) { display: flex; margin-bottom: 20px;}
+main>div:nth-of-type(2) span {width: 450px; height: 50px; color: #346aff; border: 1px solid #346aff; text-align: center; font-size: 17px; font-weight: bold; line-height: 50px; border-top-left-radius: 4px; border-top-left-radius: 4px; border-bottom: none;}
+main>div:nth-of-type(2) a {width: 450px; height: 50px; color: #454f5b; font-weight: 200; font-size: 17px; background-color: #f9fafb; text-align: center; line-height: 50px; border-bottom: 1px solid #346aff;}
+main>div:nth-of-type(2) a:hover {color:black; font-weight: bold; background-color: #eaedf0; font-size: 18px;}
+
+main>div:nth-of-type(3) {border: 1px solid red; width: 600px;}
+main>div:nth-of-type(3)>span {display: flex;}
+
