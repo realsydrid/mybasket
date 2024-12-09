@@ -1,0 +1,10 @@
+{
+    "user_id": "isy",
+    "name": "인승엽",
+    "age": 32,
+    "married": false,
+    "address": "서울시 서대문구",
+    "phone": "010-1212-3434",
+    "email": "isy@gmail.com",
+    "password":"a123"
+}
