@@ -16,46 +16,48 @@ const loadData = async function () {
     printBaskets(userBaskets);
     printProducts(products);
     setEventListeners();
+    printTotal();
 }
 
 const setEventListeners = () => {
     const basketCont = document.getElementById('basketCont');
-    
+
     basketCont.addEventListener('click', (e) => {
-        if (!e.target.className.includes('cnt')) {return;}                
+        if (!e.target.className.includes('cnt')) { return; }
         const tr = e.target.closest('tr');
         const priceSpan = tr.querySelector('.price');
         const titleSpan = tr.querySelector('.title');
         const basket = userBaskets.baskets.find(item => item.title === titleSpan.innerText);
-        let currentValue = Number(tr.querySelector('.cnt').value);        
+        let currentValue = Number(tr.querySelector('.cnt').value);
         if (e.target.className === 'cntPlusBtn') {
             currentValue++;
         } else if (e.target.className === 'cntMinusBtn' && currentValue > 1) {
             currentValue--;
-        }        
+        }
         tr.querySelector('.cnt').value = currentValue;
         priceSpan.innerText = (basket.price * currentValue).toLocaleString();
+        
     });
 
     basketCont.addEventListener('change', (e) => {
-        if (e.target.className !== 'cnt') {return;}        
+        if (e.target.className !== 'cnt') { return; }
         const tr = e.target.closest('tr');
         const priceSpan = tr.querySelector('.price');
         const titleSpan = tr.querySelector('.title');
-        const basket = userBaskets.baskets.find(item => item.title === titleSpan.innerText);        
-        let currentValue = e.target.value.replace(/[^0-9]/g, '');        
+        const basket = userBaskets.baskets.find(item => item.title === titleSpan.innerText);
+        let currentValue = e.target.value.replace(/[^0-9]/g, '');
         if (!currentValue || currentValue === '0') {
             currentValue = 1;
         } else {
             currentValue = Math.min(Number(currentValue), 999);
-        }        
+        }
         e.target.value = currentValue;
         priceSpan.innerText = (basket.price * currentValue).toLocaleString();
     });
 
     basketCont.addEventListener('input', (e) => {
-        if (e.target.className !== 'cnt') {return;}        
-        e.target.value = e.target.value.replace(/[^0-9]/g, '');        
+        if (e.target.className !== 'cnt') { return; }
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
         if (e.target.value.startsWith('0')) {
             e.target.value = e.target.value.replace(/^0+/, '');
         }
@@ -122,5 +124,23 @@ const printProducts = (products) => {
 
 }
 
+function printTotal() {
+    let basketCont = document.getElementById('basketCont');
+    let prodcutInfo = basketCont.querySelectorAll('.prodcutInfo');
+    prodcutInfoArr = Array.from(prodcutInfo);
+    let priceSum = document.getElementById('priceSum')
+    let priceTotal=document.getElementById('priceTotal')
+    let totalPriceSum = 0
+    prodcutInfoArr.forEach(product => {
+        let price = product.querySelector('.price').textContent.replace(/,/g, '');
+        let cnt = product.querySelector('.cnt').value
+        let totalPrice = parseInt(price) * parseInt(cnt)
+        totalPriceSum=totalPriceSum+totalPrice
+    });
+    priceSum.innerText=totalPriceSum.toLocaleString()    
+    priceTotal.innerHTML=`${totalPriceSum.toLocaleString()}<span>원</span>`
+    
+}
 loadData();
+
 
