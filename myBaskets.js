@@ -15,7 +15,7 @@ const loadData = async function () {
     userBaskets = await res3.json()
     printBaskets(userBaskets);
     printProducts(products);
-    setEventListeners(userBaskets);   
+    setEventListeners(userBaskets);
     printTotal(userBaskets);
 }
 
@@ -23,23 +23,23 @@ const setEventListeners = () => {
     const basketCont = document.getElementById('basketCont');
 
     const selectAllCheckbox = document.getElementById('selectAllCheckbox');
-    const getTotalBasketCount = () => document.querySelectorAll('.basketSelect').length; 
+    const getTotalBasketCount = () => document.querySelectorAll('.basketSelect').length;
     const totalBasketCount = document.querySelectorAll('.basketSelect').length;
 
     const updateSelectCount = () => {
         const selectedCount = basketCont.querySelectorAll('.basketSelect:checked').length;
         const totalBasketCount = getTotalBasketCount();
-        totalSelectCount.innerText = `( ${selectedCount} / ${totalBasketCount} )`; 
-        selectAllCheckbox.checked = (selectedCount === totalBasketCount); 
+        totalSelectCount.innerText = `( ${selectedCount} / ${totalBasketCount} )`;
+        selectAllCheckbox.checked = (selectedCount === totalBasketCount);
     };
 
     basketCont.addEventListener('change', (e) => {
-        if (e.target.classList.contains('basketSelect')) { 
-            updateSelectCount(); 
+        if (e.target.classList.contains('basketSelect')) {
+            updateSelectCount();
         }
         printTotal()
     });
-    
+
     selectAllCheckbox.addEventListener('change', () => {
         const isChecked = selectAllCheckbox.checked;
         const checkboxes = basketCont.querySelectorAll('.basketSelect');
@@ -91,19 +91,34 @@ const setEventListeners = () => {
         }
     });
 
-    basketCont.addEventListener('click', (e)=>{
-        if (e.target.className !=='deleteBtn'){return;}
-        let tr=e.target.closest('tr')        
-        let baskets=userBaskets.baskets
+    basketCont.addEventListener('click', (e) => {
+        if (e.target.className !== 'deleteBtn') { return; }
+        let tr = e.target.closest('tr')        
         let titleSpan = tr.querySelector('.title');
-        const index = userBaskets.baskets.findIndex(item => item.title === titleSpan.innerText); 
+        const index = userBaskets.baskets.findIndex(item => item.title === titleSpan.innerText);
         if (index !== -1) {
-            userBaskets.baskets.splice(index, 1); 
+            userBaskets.baskets.splice(index, 1);
         }
         tr.remove();
         printTotal();
         updateSelectCount();
     });
+
+    const selectedDeleteBtn = document.getElementById('selectedDeleteBtn')
+    selectedDeleteBtn.addEventListener('click', () => {
+        let checkedboxes = basketCont.querySelectorAll('.basketSelect:checked')
+        checkedboxes.forEach(checkedbox => {
+            let tr = checkedbox.closest('tr')
+            let titleSpan = tr.querySelector('.title');            
+            const index = userBaskets.baskets.findIndex(item => item.title === titleSpan.innerText);
+        if (index !== -1) {
+            userBaskets.baskets.splice(index, 1);
+        }
+        tr.remove();
+        });
+        printTotal();
+        updateSelectCount();
+    })
 }
 
 
@@ -162,38 +177,38 @@ const printProducts = (products) => {
         }
         let img = tr.querySelector('#itemImg')
         img.src = product['img[src]']
-        
+
     })
 
 }
 
 
 function printTotal() {
-    let baskets=userBaskets.baskets    
+    let baskets = userBaskets.baskets
     const basketCont = document.getElementById('basketCont');
-    priceSum=0
-    let checkedboxes=basketCont.querySelectorAll('.basketSelect:checked')
+    priceSum = 0
+    let checkedboxes = basketCont.querySelectorAll('.basketSelect:checked')
     checkedboxes.forEach(checkedbox => {
-        let tr=checkedbox.closest('tr')
-        let priceText=tr.querySelector('.price').innerText
-        let price=priceText.replace(/,/g,'');
-        priceSum+=parseInt(price)
+        let tr = checkedbox.closest('tr')
+        let priceText = tr.querySelector('.price').innerText
+        let price = priceText.replace(/,/g, '');
+        priceSum += parseInt(price)
     });
-    let priceSumText=document.getElementById('priceSum');
-    let priceTotal=document.getElementById('priceTotal');
-    priceSumText.innerHTML=`${priceSum.toLocaleString()}<span>원</span>`;
-    priceTotal.innerHTML=`${priceSum.toLocaleString()}<span>원</span>`;    
+    let priceSumText = document.getElementById('priceSum');
+    let priceTotal = document.getElementById('priceTotal');
+    priceSumText.innerHTML = `${priceSum.toLocaleString()}<span>원</span>`;
+    priceTotal.innerHTML = `${priceSum.toLocaleString()}<span>원</span>`;
 }
 
-function printArrive(tr){
-    let arriveDay=tr.querySelector('.arriveDateDay')
-    let arriveDate=tr.querySelector('.arriveDateDate')
-    let today=new Date();
-    let tommorow= new Date(today.setDate(today.getDate()+1));
-    let week=["월","화","수","목","금","토","일"];
-    arriveDay.innerText="("+week[tommorow.getDay()]+")";
-    arriveDate.innerText=`${tommorow.getMonth()+1}`+"/"+tommorow.getDate();
-    
+function printArrive(tr) {
+    let arriveDay = tr.querySelector('.arriveDateDay')
+    let arriveDate = tr.querySelector('.arriveDateDate')
+    let today = new Date();
+    let tommorow = new Date(today.setDate(today.getDate() + 1));
+    let week = ["월", "화", "수", "목", "금", "토", "일"];
+    arriveDay.innerText = "(" + week[tommorow.getDay()] + ")";
+    arriveDate.innerText = `${tommorow.getMonth() + 1}` + "/" + tommorow.getDate();
+
 }
 loadData();
 
