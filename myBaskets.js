@@ -36,9 +36,6 @@ const setEventListeners = () => {
         }
         tr.querySelector('.cnt').value = currentValue;
         priceSpan.innerText = (basket.price * currentValue).toLocaleString();
-        console.log('이벤트리스너');
-        
-        console.log(document.getElementById('priceSum'))
         printTotal()
     });
 
@@ -56,6 +53,7 @@ const setEventListeners = () => {
         }
         e.target.value = currentValue;
         priceSpan.innerText = (basket.price * currentValue).toLocaleString();
+        printTotal()
     });
 
     basketCont.addEventListener('input', (e) => {
@@ -100,7 +98,6 @@ const printBaskets = (userBaskets) => {
 
 
 const printProducts = (products) => {
-    console.log(products);
     const productTrEx = document.getElementById('productTrEx');
     const productCont = document.getElementById('productCont')
     productCont.innerHTML = ''
@@ -135,17 +132,13 @@ function printTotal() {
     let priceTotal=document.getElementById('priceTotal')
     let totalPriceSum = 0
     prodcutInfoArr.forEach(product => {
-        let price = product.querySelector('.price').textContent.replace(/,/g, '');///이걸 베이스프라이스구해서해야함
-        let cnt = product.querySelector('.cnt').value
-        let totalPrice = parseInt(price) * parseInt(cnt)
-        console.log('######총금액:'+totalPriceSum);
-        console.log('상품금액:'+totalPrice);
-        console.log(price);///여기가문제였다
-        
-        
-        totalPriceSum+=totalPrice
-        console.log('총금액:'+totalPriceSum);
+        const titleSpan = product.querySelector('.title');
 
+        const basket = userBaskets.baskets.find(item => item.title === titleSpan.innerText);
+        let price=basket.price
+        let cnt = product.querySelector('.cnt').value
+        let totalPrice = parseInt(price) * parseInt(cnt)                
+        totalPriceSum=totalPriceSum+totalPrice
     });
     priceSum.innerText=totalPriceSum.toLocaleString()    
     priceTotal.innerHTML=`${totalPriceSum.toLocaleString()}<span>원</span>`
