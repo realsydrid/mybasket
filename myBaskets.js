@@ -15,7 +15,7 @@ const loadData = async function () {
     userBaskets = await res3.json()
     printBaskets(userBaskets);
     printProducts(products);
-    setEventListeners();   
+    setEventListeners(userBaskets);   
     printTotal(userBaskets);
 }
 
@@ -23,11 +23,12 @@ const setEventListeners = () => {
     const basketCont = document.getElementById('basketCont');
 
     const selectAllCheckbox = document.getElementById('selectAllCheckbox');
-    const totalSelectCount = document.getElementById('totalSelectCount'); 
+    const getTotalBasketCount = () => document.querySelectorAll('.basketSelect').length; 
     const totalBasketCount = document.querySelectorAll('.basketSelect').length;
 
     const updateSelectCount = () => {
         const selectedCount = basketCont.querySelectorAll('.basketSelect:checked').length;
+        const totalBasketCount = getTotalBasketCount();
         totalSelectCount.innerText = `( ${selectedCount} / ${totalBasketCount} )`; 
         selectAllCheckbox.checked = (selectedCount === totalBasketCount); 
     };
@@ -38,7 +39,6 @@ const setEventListeners = () => {
         }
         printTotal()
     });
-
     
     selectAllCheckbox.addEventListener('change', () => {
         const isChecked = selectAllCheckbox.checked;
@@ -47,8 +47,6 @@ const setEventListeners = () => {
         updateSelectCount();
         printTotal()
     });
-
-
 
     basketCont.addEventListener('click', (e) => {
         if (!e.target.className.includes('cnt')) { return; }
@@ -73,6 +71,7 @@ const setEventListeners = () => {
         const priceSpan = tr.querySelector('.price');
         const titleSpan = tr.querySelector('.title');
         const basket = userBaskets.baskets.find(item => item.title === titleSpan.innerText);
+
         let currentValue = e.target.value.replace(/[^0-9]/g, '');
         if (!currentValue || currentValue === '0') {
             currentValue = 1;
@@ -90,6 +89,20 @@ const setEventListeners = () => {
         if (e.target.value.startsWith('0')) {
             e.target.value = e.target.value.replace(/^0+/, '');
         }
+    });
+
+    basketCont.addEventListener('click', (e)=>{
+        if (e.target.className !=='deleteBtn'){return;}
+        let tr=e.target.closest('tr')        
+        let baskets=userBaskets.baskets
+        let titleSpan = tr.querySelector('.title');
+        const index = userBaskets.baskets.findIndex(item => item.title === titleSpan.innerText); 
+        if (index !== -1) {
+            userBaskets.baskets.splice(index, 1); 
+        }
+        tr.remove();
+        printTotal();
+        updateSelectCount();
     });
 }
 
@@ -166,10 +179,10 @@ function printTotal() {
         let price=priceText.replace(/,/g,'');
         priceSum+=parseInt(price)
     });
-    let priceSumText=document.getElementById('priceSum')
-    priceSumText.innerText=priceSum.toLocaleString()
-
-    
+    let priceSumText=document.getElementById('priceSum');
+    let priceTotal=document.getElementById('priceTotal');
+    priceSumText.innerHTML=`${priceSum.toLocaleString()}<span>원</span>`;
+    priceTotal.innerHTML=`${priceSum.toLocaleString()}<span>원</span>`;    
 }
 
 function printArrive(tr){

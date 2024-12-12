@@ -33,9 +33,10 @@ header h2 a {display: block; text-indent: -999px; overflow: hidden; width: 140px
 #basketContDiv td:nth-of-type(1)>div {display: flex; align-items: center;}
 #basketContDiv td:nth-of-type(1) input {width: 20px; height: 20px; margin-right: 8px;}
 #basketContDiv td:nth-of-type(1) img {width: 140px; height: 140px; cursor: pointer;}
-#basketContDiv #productInfo {padding: 16px 16px 16px 0; width: 100%;}
-#basketContDiv #productInfo .title {font-size: 16px; cursor: pointer;}
+#basketContDiv #productInfo {padding: 16px 16px 16px 0; width: 100%; position:relative}
+#basketContDiv #productInfo .title {display: inline-block;font-size: 16px; cursor: pointer; width: 345px;}
 #basketContDiv #productInfo .title:hover {text-decoration: underline;}
+#basketContDiv #productInfo .deleteBtn {border: none; text-decoration: underline; background: none; position: absolute; top:16px; right: 10px; font-size: 16px;}
 #basketContDiv #productInfo .deliveryDateCont {margin: 16px 0 10px 0;}
 #basketContDiv #productInfo .deliveryDateCont .arriveDate {color: #008c00; font-size: 16px;}
 #basketContDiv #productInfo .deliveryDateCont .deliveryCondition {color: #768695; font-size: 16px; font-weight: 700;}
