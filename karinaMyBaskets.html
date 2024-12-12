@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="myBaskets.css">
+    <title>장바구니</title>
+    <script defer src="myBaskets.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="screen_out"><p id="userId">karina</p>쿠팡 장바구니</h1>
+        <h2><a href="https://www.coupang.com/">쿠팡 메인</a></h2>
+    </header>
+    <main>
+        <div id="basketMain">
+            <div id="basketTitle">
+                <a href="#">돌아가기</a>
+                <p>장바구니</p>
+                <div></div>
+            </div>
+            <div id="basketTab">
+                <span>일반구매(<span id="basketListCnt">0</span>)</span>
+                <a href="#">정기배송(<span>0</span>)</a>
+            </div>
+            <div id="contentsCont">
+                <div id="basketContDiv">
+                    <p>로켓배송 상품 <span>무료배송</span></p>
+                    <table>
+                        <tbody id="basketCont">
+                            <tr id="basketTrEx">
+                                <td>
+                                    <div>
+                                        <input type="checkbox" class="basketSelect">
+                                    </div>
+                                    <img src="img/서울우유 1급A우유,2.3L.jpg" alt="" id="productImg">
+                                </td>
+                                <td id="productInfo" class="productInfo">
+                                    <span class="title">서울우유 1급A우유, 2.3L, 1개</span>
+                                    <button class="deleteBtn">삭제</button>
+                                    <div class="deliveryDateCont">
+                                        <span class="arriveDate">
+                                            <span class="arriveDateTxt">내일</span>
+                                            <span class="arriveDateDay">(화) </span>
+                                            <span class="arriveDateDate">12/10</span>
+                                            <span class="arriveDateTime"></span>
+                                            <span class="promiseTxt"> 도착 보장
+                                            </span>
+                                        </span>
+                                        <span class="deliveryCondition">(밤 12시 전 주문 시)</span>
+                                    </div>
+                                    <span class="price">7580</span><span>원</span>
+                                    <img src="img/logo_rocket_large.png" alt="로켓배송 이미지">
+                                    <div id="cntCont">
+                                        <div class="cntMinusBtn">-</div>
+                                        <input type="text" name="cnt" class="cnt" value="1">
+                                        <div class="cntPlusBtn">+</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <a href="#">로켓배송 상품 추가하기</a>
+                    </div>
+                </div>
+                <div id="orderCont">
+                    <div>주문 예상 금액</div>
+                    <div>
+                        <div class="priceTitle">총 상품가격</div>
+                        <div id="priceSum">0<span>원</span></div>
+                    </div>
+                    <div>
+                        <div class="priceTitle">총 할인</div>
+                        <div>- 0<span>원</span></div>
+                    </div>
+                    <div>
+                        <div class="priceTitle">총 배송비</div>
+                        <div>+ 0<span>원</span></div>
+                    </div>
+                    <div id="priceTotal">0<span>원</span></div>
+                    <button id="purchaseBtn">구매하기 (0)</button>
+                </div>
+            </div>
+            <div id="basketFoot">
+                <label>
+                    <input id="selectAllCheckbox" type="checkbox">
+                    <span>전체 선택</span>
+                    <span id="totalSelectCount">( 0 / 3 )</span>
+                </label>
+                <div>
+                    <button id="selectedDeleteBtn">선택 삭제</button>
+                    <div></div>
+                    <button>품절/판매종료상품 전체삭제</button>
+                </div>
+            </div>
+        </div>
+        <div id="recommendProductHead">
+            <h2>같이 보면 좋은 상품</h2>
+            <div>
+                <span>1<span>/5</span></span>
+                <button>이전페이지</button>
+                <button>다음페이지</button>
+            </div>
+        </div>
+        <div id="recommendProduct">
+            <table>
+                <tbody id="productCont">
+                    <tr id="productTrEx">
+                        <td>
+                            <img src="img/서울우유 1급A우유,2.3L.jpg" alt="" id="itemImg">
+                        </td>
+                        <td id="itemInfo" class="productInfo">
+                            <span class="title">서울우유 1급A우유, 2.3L, 1개</span>
+                            <div>
+                                <span>쿠팡가</span>
+                                <span class="price">7580</span>
+                                <span>원</span>
+                                <img src="img/logo_rocket_large.png" alt="로켓배송로고이미지">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer class="screen_out">
+        <h2 class="screen_out">기타이용서비스</h2>
+        <ul>
+            <li>회사소개</li>
+            <li>Investor Relations</li>
+            <li>인재채용</li>
+            <li>입점 / 제휴문의</li>
+            <li>공지사항</li>
+            <li>고객의 소리</li>
+            <li>이용약관</li>
+            <li>개인정보 처리방침</li>
+            <li>쿠팡페이 이용약관</li>
+            <li>신뢰관리센터</li>
+            <li>제휴마케팅</li>
+            <li>광고문의</li>
+            <li>
+                <details>
+                    <summary>Global site</summary>
+                    Coupang Taiwan
+                </details>
+            </li>
+        </ul>
+        <h2>문의관련 정보 및 안내사항</h2>
+        <address>
+            상호명 및 호스팅 서비스 제공 : 쿠팡(주)<br>
+            대표이사 : 강한승,박대준<br>
+            서울시 송파구 송파대로 570 <br>
+            사업자 등록번호 : 120-88-00767 <br>
+            통신판매업신고 : 2017-서울송파-0680<br>
+            <a href="http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=1208800767">사업자정보 확인 &gt;</a>
+        </address>
+        <h3>고객센터</h3>
+        <a href="https://mc.coupang.com/ssr/desktop/contact/inquiry">
+            <strong>365고객센터</strong> | 전자금융거래분쟁처리담당<br>
+            <em>1577-7011 (유료)</em>
+            서울시 송파구 송파대로 570<br>
+            <span>email : help@coupang.com</span>
+        </a>
+        <h3>채무보증 안내</h3>
+        <p>
+            <strong>우리은행 채무지급보증 안내</strong><br>
+            <span>
+                당사는 고객님이 현금 결제한 금액에 대해<br>우리은행과 채무지급보증 계약을 체결하여<br>안전거래를 보장하고 있습니다.<br>
+            </span>
+            <a>서비스 가입사실 확인 &gt;</a>
+        </p>
+        <div>인증마크 이미지</div>
+        <div>
+            <p>사이버몰 내 판매되는 상품 중에는 쿠팡에 등록한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.
+                <br> 마켓플레이스(오픈마켓) 상품의 경우 쿠팡은 통신판매중개자이며 통신판매의 당사자가 아닙니다. <br>쿠팡은 마켓플레이스(오픈마켓) 상품, 거래정보 및 거래 등에 대하여 책임을 지지
+                않습니다. <br> 쿠팡은 소비자 보호와 안전거래를 위해 신뢰관리센터(CM112@coupang.com)를 운영하고 있으며, 관련 분쟁이 발생할 경우 별도의 분쟁 처리절차에 의거 분쟁이
+                처리됩니다.<br> Copyright © Coupang Corp. 2010-2024 All Rights Reserved.
+            </p>
+            <ul>
+                <li><a href="https://www.facebook.com/Coupang.korea">쿠팡
+                        페이스북</a></li>
+                <li><a href="https://news.coupang.com/">쿠팡 뉴스룸</a></li>
+                <li><a href="https://www.instagram.com/coupang">쿠팡
+                        인스타그램</a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

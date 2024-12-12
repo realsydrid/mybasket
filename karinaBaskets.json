@@ -1,0 +1,33 @@
+{
+    "user_id": "karina",
+    "baskets": [
+        {
+            "num": 641,
+            "title": "에스파 - SAVAGE 미니 1집 앨범 P.O.S VER, 1CD",
+            "cnt": 1,
+            "price": 17000,
+            "img[src]": "img/에스파 - SAVAGE 미니 1집 앨범 P.O.S VER, 1CD.jpg"
+        },
+        {
+            "num": 2394,
+            "title": "비타500 제로, 100ml, 20개",
+            "cnt": 2,
+            "price": 11000,
+            "img[src]": "img/비타500 제로, 100ml, 20개.jpg"
+        },
+        {
+            "num": 4245,
+            "title": "투쿨포스쿨 아트클래스 바이로댕 쉐딩 9.5g + 듀얼 컨투어 브러쉬, 클래식, 1세트",
+            "cnt": 4,
+            "price": 13000,
+            "img[src]": "img/투쿨포스쿨 아트클래스 바이로댕 쉐딩 9.5g + 듀얼 컨투어 브러쉬, 클래식, 1세트.jpg"
+        },
+        {
+            "num": 3345,
+            "title": "라네즈 크림스킨, 170ml, 1개",
+            "cnt": 4,
+            "price": 20000,
+            "img[src]": "img/라네즈 크림스킨, 170ml, 1개.jpg"
+        }
+    ]
+}

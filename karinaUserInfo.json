@@ -1,0 +1,10 @@
+{
+    "user_id": "karina",
+    "name": "카리나",
+    "age": 24,
+    "married": false,
+    "address": "서울시 강남구",
+    "phone": "010-8282-1212",
+    "email": "karina@gmail.com",
+    "password":"k123"
+}

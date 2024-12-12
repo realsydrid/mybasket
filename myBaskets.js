@@ -1,8 +1,8 @@
 let userBaskets;
-
+const userId=document.getElementById('userId').innerText
 const loadData = async function () {
     let resArr = await Promise.all([
-        fetch('./loginUser.json'),
+        fetch(`./${userId}UserInfo.json`),
         fetch('./recommend_products.json')
     ]);
     let objArr = await Promise.all([
