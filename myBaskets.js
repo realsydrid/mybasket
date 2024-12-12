@@ -31,6 +31,10 @@ const setEventListeners = () => {
         const totalBasketCount = getTotalBasketCount();
         totalSelectCount.innerText = `( ${selectedCount} / ${totalBasketCount} )`;
         selectAllCheckbox.checked = (selectedCount === totalBasketCount);
+        let purchaseBtn=document.getElementById('purchaseBtn')
+        purchaseBtn.innerText=`구매하기 (${selectedCount})`
+        let basketListCnt=document.getElementById('basketListCnt');
+        basketListCnt.innerText=totalBasketCount  
     };
 
     basketCont.addEventListener('change', (e) => {
@@ -117,7 +121,7 @@ const setEventListeners = () => {
         tr.remove();
         });
         printTotal();
-        updateSelectCount();
+        updateSelectCount();        
     })
 }
 
@@ -151,6 +155,9 @@ const printBaskets = (userBaskets) => {
         let img = tr.querySelector('#productImg')
         img.src = basket['img[src]']
     });
+    let basketListCnt=document.getElementById('basketListCnt');
+        basketListCnt.innerText=basketsList.length 
+    
 }
 
 
