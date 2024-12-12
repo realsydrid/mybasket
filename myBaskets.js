@@ -77,6 +77,7 @@ const printBaskets = (userBaskets) => {
         let tr = basketTrEx.cloneNode(true);
         tr.removeAttribute('id');
         basketCont.append(tr);
+        printArrive(tr);
         for (let key in basket) {
             let td = tr.querySelector('#productInfo');
             let span = td.querySelector(`.${key}`)
@@ -120,20 +121,21 @@ const printProducts = (products) => {
         }
         let img = tr.querySelector('#itemImg')
         img.src = product['img[src]']
+        
     })
 
 }
 
+
 function printTotal() {
-    let basketCont = document.getElementById('basketCont');
-    let prodcutInfo = basketCont.querySelectorAll('.prodcutInfo');
-    prodcutInfoArr = Array.from(prodcutInfo);
+    let basketCont = document.getElementById('basketCont');        
+    let productInfo = basketCont.querySelectorAll('.productInfo');
+    productInfoArr = Array.from(productInfo);
     let priceSum = document.getElementById('priceSum')
     let priceTotal=document.getElementById('priceTotal')
-    let totalPriceSum = 0
-    prodcutInfoArr.forEach(product => {
+    let totalPriceSum = 0    
+    productInfoArr.forEach(product => {
         const titleSpan = product.querySelector('.title');
-
         const basket = userBaskets.baskets.find(item => item.title === titleSpan.innerText);
         let price=basket.price
         let cnt = product.querySelector('.cnt').value
@@ -142,6 +144,19 @@ function printTotal() {
     });
     priceSum.innerText=totalPriceSum.toLocaleString()    
     priceTotal.innerHTML=`${totalPriceSum.toLocaleString()}<span>원</span>`
+    
+}
+
+function printArrive(tr){
+    let arriveDay=tr.querySelector('.arriveDateDay')
+    let arriveDate=tr.querySelector('.arriveDateDate')
+    let today=new Date();
+    let tommorow= new Date(today.setDate(today.getDate()+1));
+    let week=["월","화","수","목","금","토","일"];
+    arriveDay.innerText="("+week[tommorow.getDay()]+")";
+    arriveDate.innerText=`${tommorow.getMonth()+1}`+"/"+tommorow.getDate();
+    console.log(arriveDate.innerText);
+    console.log(arriveDay.innerText);
     
 }
 loadData();
