@@ -16,11 +16,39 @@ const loadData = async function () {
     printBaskets(userBaskets);
     printProducts(products);
     setEventListeners();   
-    printTotal();
+    printTotal(userBaskets);
 }
 
 const setEventListeners = () => {
     const basketCont = document.getElementById('basketCont');
+
+    const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+    const totalSelectCount = document.getElementById('totalSelectCount'); 
+    const totalBasketCount = document.querySelectorAll('.basketSelect').length;
+
+    const updateSelectCount = () => {
+        const selectedCount = basketCont.querySelectorAll('.basketSelect:checked').length;
+        totalSelectCount.innerText = `( ${selectedCount} / ${totalBasketCount} )`; 
+        selectAllCheckbox.checked = (selectedCount === totalBasketCount); 
+    };
+
+    basketCont.addEventListener('change', (e) => {
+        if (e.target.classList.contains('basketSelect')) { 
+            updateSelectCount(); 
+        }
+        printTotal()
+    });
+
+    
+    selectAllCheckbox.addEventListener('change', () => {
+        const isChecked = selectAllCheckbox.checked;
+        const checkboxes = basketCont.querySelectorAll('.basketSelect');
+        checkboxes.forEach(checkbox => { checkbox.checked = isChecked; });
+        updateSelectCount();
+        printTotal()
+    });
+
+
 
     basketCont.addEventListener('click', (e) => {
         if (!e.target.className.includes('cnt')) { return; }
@@ -128,22 +156,19 @@ const printProducts = (products) => {
 
 
 function printTotal() {
-    let basketCont = document.getElementById('basketCont');        
-    let productInfo = basketCont.querySelectorAll('.productInfo');
-    productInfoArr = Array.from(productInfo);
-    let priceSum = document.getElementById('priceSum')
-    let priceTotal=document.getElementById('priceTotal')
-    let totalPriceSum = 0    
-    productInfoArr.forEach(product => {
-        const titleSpan = product.querySelector('.title');
-        const basket = userBaskets.baskets.find(item => item.title === titleSpan.innerText);
-        let price=basket.price
-        let cnt = product.querySelector('.cnt').value
-        let totalPrice = parseInt(price) * parseInt(cnt)                
-        totalPriceSum=totalPriceSum+totalPrice
+    let baskets=userBaskets.baskets    
+    const basketCont = document.getElementById('basketCont');
+    priceSum=0
+    let checkedboxes=basketCont.querySelectorAll('.basketSelect:checked')
+    checkedboxes.forEach(checkedbox => {
+        let tr=checkedbox.closest('tr')
+        let priceText=tr.querySelector('.price').innerText
+        let price=priceText.replace(/,/g,'');
+        priceSum+=parseInt(price)
     });
-    priceSum.innerText=totalPriceSum.toLocaleString()    
-    priceTotal.innerHTML=`${totalPriceSum.toLocaleString()}<span>원</span>`
+    let priceSumText=document.getElementById('priceSum')
+    priceSumText.innerText=priceSum.toLocaleString()
+
     
 }
 
@@ -155,8 +180,6 @@ function printArrive(tr){
     let week=["월","화","수","목","금","토","일"];
     arriveDay.innerText="("+week[tommorow.getDay()]+")";
     arriveDate.innerText=`${tommorow.getMonth()+1}`+"/"+tommorow.getDate();
-    console.log(arriveDate.innerText);
-    console.log(arriveDay.innerText);
     
 }
 loadData();
