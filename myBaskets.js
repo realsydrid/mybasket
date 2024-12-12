@@ -19,23 +19,23 @@ const loadData = async function () {
     printTotal(userBaskets);
 }
 
+const updateSelectCount = () => {
+    const basketCont = document.getElementById('basketCont');
+    const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+    const selectedCount = basketCont.querySelectorAll('.basketSelect:checked').length;
+    const totalBasketCount = basketCont.querySelectorAll('.basketSelect').length;
+    const totalSelectCount = document.getElementById('totalSelectCount');    
+    totalSelectCount.innerText = `( ${selectedCount} / ${totalBasketCount} )`;
+    selectAllCheckbox.checked = (selectedCount === totalBasketCount);
+    let purchaseBtn = document.getElementById('purchaseBtn');
+    purchaseBtn.innerText = `구매하기 (${selectedCount})`;
+    let basketListCnt = document.getElementById('basketListCnt');
+    basketListCnt.innerText = totalBasketCount;
+};
+
 const setEventListeners = () => {
     const basketCont = document.getElementById('basketCont');
-
     const selectAllCheckbox = document.getElementById('selectAllCheckbox');
-    const getTotalBasketCount = () => document.querySelectorAll('.basketSelect').length;
-    const totalBasketCount = document.querySelectorAll('.basketSelect').length;
-
-    const updateSelectCount = () => {
-        const selectedCount = basketCont.querySelectorAll('.basketSelect:checked').length;
-        const totalBasketCount = getTotalBasketCount();
-        totalSelectCount.innerText = `( ${selectedCount} / ${totalBasketCount} )`;
-        selectAllCheckbox.checked = (selectedCount === totalBasketCount);
-        let purchaseBtn=document.getElementById('purchaseBtn')
-        purchaseBtn.innerText=`구매하기 (${selectedCount})`
-        let basketListCnt=document.getElementById('basketListCnt');
-        basketListCnt.innerText=totalBasketCount  
-    };
 
     basketCont.addEventListener('change', (e) => {
         if (e.target.classList.contains('basketSelect')) {
@@ -157,7 +157,7 @@ const printBaskets = (userBaskets) => {
     });
     let basketListCnt=document.getElementById('basketListCnt');
         basketListCnt.innerText=basketsList.length 
-    
+        updateSelectCount()
 }
 
 
