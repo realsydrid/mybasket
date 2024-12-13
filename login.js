@@ -12,7 +12,7 @@ document.getElementById('loginBtn').addEventListener('click', async () => {
         if (res.status === 200) {
             const userData = await res.json()
             if (userData.password === userPassword) {
-                window.location.href = `http://mark9815.dothome.co.kr/mybasket/${userId}MyInfo.html`;
+                window.location.href = `https://realsydrid.github.io/mybasket/${userId}MyInfo.html`;
             } else {
                 alert('비밀번호가 일치하지 않습니다.');
             }

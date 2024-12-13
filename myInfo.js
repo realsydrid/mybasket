@@ -21,7 +21,7 @@ const loadData = async function () {
             
         }
         const basketUrl=document.getElementById('basketUrl')
-        basketUrl.href=`http://mark9815.dothome.co.kr/mybasket/${userId}MyBaskets.html`
+        basketUrl.href=`https://realsydrid.github.io/mybasket/${userId}MyBaskets.html`
         
     } catch(error){
         console.log('정보불러오기에 실패했습니다.');
