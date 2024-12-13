@@ -40,8 +40,8 @@
 - 테스트 계정  
     - User1 = { ID : isy , PW : i123}  
     - User2 = { ID : karina , PW : k123}
-      
-    https://realsydrid.github.io/mybasket/login.html  
+    - 로그인페이지 링크 :  
+    <https://realsydrid.github.io/mybasket/login.html>  
 
 
 ### 2. 사용자 정보 페이지
