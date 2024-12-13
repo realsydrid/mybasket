@@ -29,7 +29,8 @@
 ## [페이지별 주요 기능]
 
 
-### 1. 로그인 페이지
+### 1. 로그인 페이지  
+
 
 
 - 사용자 인증 시스템  
@@ -38,7 +39,9 @@
     - 로그인 성공 시 해당 사용자의 정보 페이지로 자동 이동  
 - 테스트 계정  
     - User1 = { ID : isy , PW : i123}  
-    - User2 = { ID : karina , PW : k123}  
+    - User2 = { ID : karina , PW : k123}
+      
+    https://realsydrid.github.io/mybasket/login.html  
 
 
 ### 2. 사용자 정보 페이지
@@ -77,7 +80,7 @@
 ## [프로젝트 구현 도메인]
 
 
-### 🔗 http://mark9815.dothome.co.kr/mybasket/login.html
+### 🔗 https://realsydrid.github.io/mybasket/login.html
 
 
 
